@@ -1,0 +1,42 @@
+name: tuturu
+description: A new Flutter project.
+version: 1.0.0+1
+environment: 
+  sdk: '>=3.1.4 <4.0.0'
+dependencies: 
+  flutter: 
+    sdk: flutter
+  cached_network_image: ^3.3.0
+  flutter_svg: ^2.0.9
+  intl: ^0.18.0
+  get: ^4.6.6
+  camera: ^0.10.5+9
+  firebase_auth: ^4.16.0
+  google_sign_in: ^6.1.6
+  logger: ^2.0.2+1
+  cloud_firestore: ^4.14.0
+dev_dependencies: 
+  flutter_test: 
+    sdk: flutter
+flutter: 
+  uses-material-design: true
+  assets: 
+    - assets/
+    - assets/images/
+  fonts: 
+    - family: Roboto
+      fonts: 
+        - asset: assets/fonts/RobotoRomanRegular.ttf
+          weight: 400
+        - asset: assets/fonts/RobotoRomanMedium.ttf
+          weight: 500
+        - asset: assets/fonts/RobotoRomanLight.ttf
+          weight: 300
+        - asset: assets/fonts/RobotoRomanBold.ttf
+          weight: 700
+    - family: Inter
+      fonts: 
+        - asset: assets/fonts/InterMedium.ttf
+          weight: 500
+        - asset: assets/fonts/InterRegular.ttf
+          weight: 400
