@@ -3,7 +3,7 @@
 - [Screenshots](#screenshots)
 - [Team Description](#team-description)
 - [System requirements](#system-requirements)
-- [Application structure](#project-structure)
+- [Application structure](#application-structure)
 - [Libraries and tools used](#libraries-and-tools-used)
 - [Support](#support)
 

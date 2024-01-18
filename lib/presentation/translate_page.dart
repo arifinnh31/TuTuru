@@ -198,7 +198,9 @@ class _TranslatePageState extends State<TranslatePage> {
         Container(
           margin: EdgeInsets.only(right: 20, bottom: 20),
           child: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              _toggleCamera();
+            },
             icon: Icon(Icons.switch_camera_sharp, size: 28),
           ),
         )
@@ -269,5 +271,21 @@ class _TranslatePageState extends State<TranslatePage> {
       padding: EdgeInsets.symmetric(horizontal: 30),
       child: Text('Text:', style: TextStyle(fontSize: 15)),
     );
+  }
+
+  void _toggleCamera() async {
+    int currentCameraIndex = widget.cameras.indexOf(_controller.description);
+    int newCameraIndex = (currentCameraIndex + 1) % widget.cameras.length;
+
+    await _controller.dispose();
+
+    _controller = CameraController(
+      widget.cameras[newCameraIndex],
+      ResolutionPreset.medium,
+    );
+
+    _initializeControllerFuture = _controller.initialize();
+
+    setState(() {});
   }
 }
