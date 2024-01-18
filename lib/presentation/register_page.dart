@@ -26,7 +26,7 @@ class RegisterPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'Daftar',
-          style: TextStyle(color: Get.theme.primaryColorDark),
+          style: TextStyle(color: Colors.black),
         ),
         backgroundColor: Colors.transparent,
         centerTitle: true,
@@ -35,35 +35,32 @@ class RegisterPage extends StatelessWidget {
           onPressed: () {
             Get.back();
           },
-          icon: Icon(Icons.arrow_back, color: Get.theme.primaryColorDark),
+          icon: Icon(Icons.arrow_back, color: Colors.black),
         ),
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            width: Get.width,
-            height: Get.height - 2 * 56,
-            alignment: Alignment.center,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _buildName(),
-                SizedBox(height: 20),
-                _buildAddress(),
-                SizedBox(height: 20),
-                _buildDateOfBirth(),
-                SizedBox(height: 20),
-                _buildEmail(),
-                SizedBox(height: 20),
-                _buildPassword(),
-                SizedBox(height: 20),
-                _buildSignUp(),
-                SizedBox(height: 20),
-                _buildDividerRow(),
-                SizedBox(height: 20),
-                _buildSignUpWithGoogle(),
-              ],
-            ),
+      body: SingleChildScrollView(
+        child: Container(
+          width: Get.width,
+          height: Get.height - 2 * 56,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _buildName(),
+              SizedBox(height: 20),
+              _buildAddress(),
+              SizedBox(height: 20),
+              _buildDateOfBirth(),
+              SizedBox(height: 20),
+              _buildEmail(),
+              SizedBox(height: 20),
+              _buildPassword(),
+              SizedBox(height: 20),
+              _buildSignUp(),
+              SizedBox(height: 20),
+              _buildDividerRow(),
+              SizedBox(height: 20),
+              _buildSignUpWithGoogle(),
+            ],
           ),
         ),
       ),
@@ -112,12 +109,10 @@ class RegisterPage extends StatelessWidget {
 
   Widget _buildSignUp() {
     return CustomElevatedButton(
-      width: 288,
+      width: Get.width - 72,
       height: 60,
       buttonColor: Get.theme.primaryColor,
-      onPressed: () {
-        _signUp();
-      },
+      onPressed: _signUp,
       child: Text('Daftar', style: TextStyle(fontSize: 17)),
     );
   }
@@ -126,25 +121,23 @@ class RegisterPage extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(width: 128, height: 1, color: Get.theme.primaryColorDark),
+        Container(width: Get.width / 2 - 56, height: 1, color: Colors.black),
         SizedBox(width: 10),
         Text('OR', style: TextStyle(fontSize: 15)),
         SizedBox(width: 10),
-        Container(width: 128, height: 1, color: Get.theme.primaryColorDark),
+        Container(width: Get.width / 2 - 56, height: 1, color: Colors.black),
       ],
     );
   }
 
   Widget _buildSignUpWithGoogle() {
     return CustomElevatedButton(
-      width: 288,
+      width: Get.width - 72,
       height: 60,
-      buttonColor: Get.theme.primaryColorLight,
-      onPressed: () {
-        _signUpWithGoogle();
-      },
+      buttonColor: Colors.white,
+      onPressed: _signUpWithGoogle,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Icon(Icons.g_mobiledata, size: 40, color: Get.theme.primaryColor),
           Text('Daftar dengan Google', style: TextStyle(fontSize: 17)),

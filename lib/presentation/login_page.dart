@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,14 +7,20 @@ import 'package:tuturu/core/app_export.dart';
 import 'package:tuturu/widgets/custom_elevated_button.dart';
 import 'package:tuturu/widgets/custom_text_form_field.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   LoginPage({super.key});
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final Logger logger = Logger();
+  bool rememberAccount = false;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +28,7 @@ class LoginPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'Masuk',
-          style: TextStyle(color: Get.theme.primaryColorDark),
+          style: TextStyle(color: Colors.black),
         ),
         backgroundColor: Colors.transparent,
         centerTitle: true,
@@ -33,35 +37,32 @@ class LoginPage extends StatelessWidget {
           onPressed: () {
             Get.back();
           },
-          icon: Icon(Icons.arrow_back, color: Get.theme.primaryColorDark),
+          icon: Icon(Icons.arrow_back, color: Colors.black),
         ),
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            width: Get.width,
-            height: Get.height - 2 * 56,
-            alignment: Alignment.center,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _buildEmail(),
-                SizedBox(height: 20),
-                _buildPassword(),
-                SizedBox(height: 20),
-                _buildRememberAccount(),
-                SizedBox(height: 20),
-                _buildForgotPassword(),
-                SizedBox(height: 20),
-                _buildSignIn(),
-                SizedBox(height: 20),
-                _buildDontHaveAccount(),
-                SizedBox(height: 20),
-                _buildDividerRow(),
-                SizedBox(height: 20),
-                _buildSignInWithGoogle(),
-              ],
-            ),
+      body: SingleChildScrollView(
+        child: Container(
+          width: Get.width,
+          height: Get.height - 2 * 56,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _buildEmail(),
+              SizedBox(height: 20),
+              _buildPassword(),
+              SizedBox(height: 20),
+              _buildRememberAccount(),
+              SizedBox(height: 20),
+              _buildForgotPassword(),
+              SizedBox(height: 20),
+              _buildSignIn(),
+              SizedBox(height: 20),
+              _buildDontHaveAccount(),
+              SizedBox(height: 20),
+              _buildDividerRow(),
+              SizedBox(height: 20),
+              _buildSignInWithGoogle(),
+            ],
           ),
         ),
       ),
@@ -86,13 +87,15 @@ class LoginPage extends StatelessWidget {
 
   Widget _buildRememberAccount() {
     return Container(
-      margin: EdgeInsets.only(left: (Get.width - 288) / 2 - 15),
+      margin: EdgeInsets.only(left: 22),
       child: Row(
         children: [
           Checkbox(
-            value: false,
+            value: rememberAccount,
             onChanged: (value) {
-              value = !value!;
+              setState(() {
+                rememberAccount = value!;
+              });
             },
           ),
           Text('Ingat akun saya', style: TextStyle(fontSize: 17)),
@@ -104,7 +107,7 @@ class LoginPage extends StatelessWidget {
   Widget _buildForgotPassword() {
     return Container(
       alignment: Alignment.centerLeft,
-      margin: EdgeInsets.only(left: (Get.width - 288) / 2),
+      margin: EdgeInsets.only(left: 36),
       child: Text(
         'Lupa kata sandi?',
         style: TextStyle(fontSize: 17, color: Get.theme.primaryColor),
@@ -114,12 +117,10 @@ class LoginPage extends StatelessWidget {
 
   Widget _buildSignIn() {
     return CustomElevatedButton(
-      width: 288,
+      width: Get.width - 72,
       height: 60,
       buttonColor: Get.theme.primaryColor,
-      onPressed: () {
-        _signIn();
-      },
+      onPressed: _signIn,
       child: Text('Masuk', style: TextStyle(fontSize: 17)),
     );
   }
@@ -150,30 +151,28 @@ class LoginPage extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(width: 128, height: 1, color: Get.theme.primaryColorDark),
+        Container(width: Get.width / 2 - 56, height: 1, color: Colors.black),
         SizedBox(width: 10),
         Text('OR', style: TextStyle(fontSize: 15)),
         SizedBox(width: 10),
-        Container(width: 128, height: 1, color: Get.theme.primaryColorDark),
+        Container(width: Get.width / 2 - 56, height: 1, color: Colors.black),
       ],
     );
   }
 
   Widget _buildSignInWithGoogle() {
     return CustomElevatedButton(
-      width: 288,
+      width: Get.width - 72,
       height: 60,
-      buttonColor: Get.theme.primaryColorLight,
-      onPressed: () {
-        _signInWithGoogle();
-      },
+      buttonColor: Colors.white,
+      onPressed: _signInWithGoogle,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Icon(Icons.g_mobiledata, size: 40, color: Get.theme.primaryColor),
           Text(
             'Masuk dengan Google',
-            style: TextStyle(color: Get.theme.primaryColorDark, fontSize: 17),
+            style: TextStyle(color: Colors.black, fontSize: 17),
           ),
         ],
       ),

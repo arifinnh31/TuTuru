@@ -25,7 +25,7 @@ class AppRoutes {
     appNavigation: (context) => AppNavigation(),
     homePage: (context) => HomePage(),
     profilePage: (context) => ProfilePage(),
-    translatePage: (context) => TranslatePage(cameras: []),
+    translatePage: (context) => TranslatePage(cameras: [], isSign: true),
     learnPage: (context) => LearnPage(),
   };
 }

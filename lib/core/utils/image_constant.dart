@@ -145,4 +145,6 @@ class ImageConstant {
       '$imagePath/img_arrow_right_black_900.svg';
 
   static String imageNotFound = 'assets/images/image_not_found.png';
+
+  static String imgLearnPage = 'assets/images/img_learn_page.png';
 }

@@ -71,7 +71,7 @@ class LandingPage extends StatelessWidget {
         CustomElevatedButton(
           width: 135,
           height: 45,
-          buttonColor: Get.theme.primaryColorLight,
+          buttonColor: Colors.white,
           onPressed: () {
             Get.to(() => RegisterPage());
           },

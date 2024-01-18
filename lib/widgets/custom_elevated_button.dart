@@ -28,7 +28,7 @@ class CustomElevatedButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: buttonColor,
           foregroundColor: buttonColor == Get.theme.primaryColor
-              ? Get.theme.primaryColorLight
+              ? Colors.white
               : Get.theme.primaryColor,
           side: BorderSide(color: Get.theme.primaryColor, width: 1),
           elevation: 0,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:tuturu/core/app_export.dart';
 
 class AppNavigation extends StatefulWidget {
@@ -24,7 +23,7 @@ class _AppNavigationState extends State<AppNavigation> {
       bottomNavigationBar: SizedBox(
         height: 97,
         child: BottomNavigationBar(
-          selectedItemColor: Get.theme.primaryColorDark,
+          selectedItemColor: Colors.black,
           elevation: 10,
           items: [
             BottomNavigationBarItem(

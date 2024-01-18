@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 // import 'package:tuturu/core/app_export.dart';
 
 class CustomTextFormField extends StatefulWidget {
@@ -24,7 +25,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 288,
+      width: Get.width - 72,
       height: 60,
       child: TextFormField(
         controller: widget.controller,

@@ -28,8 +28,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Get.theme.primaryColor),
         primaryColor: Color(0xFF132840),
-        primaryColorDark: Colors.black,
-        primaryColorLight: Colors.white,
         fontFamily: 'Roboto',
       ),
       home: StreamBuilder<User?>(

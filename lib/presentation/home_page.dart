@@ -12,18 +12,16 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    User? user = _auth.currentUser;
-
     return Scaffold(
       appBar: AppBar(
-        title: null,
+        toolbarHeight: 156,
+        title: _buildGreetingSection(),
         backgroundColor: Get.theme.primaryColor,
         elevation: 0,
       ),
-      body: SafeArea(
+      body: SingleChildScrollView(
         child: Column(
           children: [
-            _buildGreetingSection(user),
             SizedBox(height: 30),
             _buildTranslationSection(),
             SizedBox(height: 30),
@@ -34,22 +32,21 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildGreetingSection(User? user) {
+  Widget _buildGreetingSection() {
+    User? user = _auth.currentUser;
+
     return Container(
-      width: Get.width,
-      padding: EdgeInsets.symmetric(horizontal: 29, vertical: 22),
-      decoration: BoxDecoration(
-        color: Get.theme.primaryColor,
-      ),
+      margin: EdgeInsets.symmetric(horizontal: 15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          SizedBox(height: 30),
           Text(
             'Hi, ${user?.displayName ?? 'User'}',
             style: TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.bold,
-              color: Get.theme.primaryColorLight,
+              color: Colors.white,
             ),
           ),
           SizedBox(height: 10),
@@ -57,7 +54,8 @@ class HomePage extends StatelessWidget {
             'Yuk Bebaskan Berkomunikasi\ndan Berekspresi!',
             style: TextStyle(
               fontSize: 15,
-              color: Get.theme.primaryColorLight,
+              fontWeight: FontWeight.normal,
+              color: Colors.white,
             ),
           ),
         ],
@@ -70,7 +68,7 @@ class HomePage extends StatelessWidget {
       alignment: Alignment.topLeft,
       child: Container(
         width: 148,
-        margin: EdgeInsets.symmetric(horizontal: 25),
+        margin: EdgeInsets.symmetric(horizontal: 30),
         child: Column(
           children: [
             Align(
@@ -93,13 +91,17 @@ class HomePage extends StatelessWidget {
                   text: 'Sign Language\nto Text',
                   onPressed: () async {
                     List<CameraDescription> cameras = await availableCameras();
-                    Get.to(() => TranslatePage(cameras: cameras));
+                    Get.to(() => TranslatePage(cameras: cameras, isSign: true));
                   },
                 ),
                 CustomIconButton(
                   icon: Icons.mic,
                   text: 'Speech to Text',
-                  onPressed: () {},
+                  onPressed: () async {
+                    List<CameraDescription> cameras = await availableCameras();
+                    Get.to(
+                        () => TranslatePage(cameras: cameras, isSign: false));
+                  },
                 ),
               ],
             ),
@@ -112,7 +114,7 @@ class HomePage extends StatelessWidget {
   Widget _buildLearningSection() {
     return Container(
       width: Get.width,
-      margin: EdgeInsets.symmetric(horizontal: 25),
+      margin: EdgeInsets.symmetric(horizontal: 30),
       child: Column(
         children: [
           Align(
@@ -133,12 +135,12 @@ class HomePage extends StatelessWidget {
             child: Card(
               elevation: 10,
               child: SizedBox(
-                width: 291,
+                width: Get.width - 60,
                 height: 227,
                 child: Column(
                   children: [
                     Container(
-                      width: 291,
+                      width: Get.width - 60,
                       height: 156,
                       decoration: BoxDecoration(
                         color: Get.theme.primaryColor,
@@ -149,51 +151,49 @@ class HomePage extends StatelessWidget {
                       ),
                       child: Container(
                         alignment: Alignment.centerLeft,
-                        margin: EdgeInsets.symmetric(horizontal: 16),
+                        margin: EdgeInsets.symmetric(horizontal: 20),
                         child: Text(
                           'Yuk Belajar Bahasa Isyarat\nBersama TuTuru',
                           style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
-                            color: Get.theme.primaryColorLight,
+                            color: Colors.white,
                           ),
                         ),
                       ),
                     ),
                     Container(
-                      width: 291,
+                      width: Get.width - 60,
                       height: 71,
+                      padding: EdgeInsets.symmetric(horizontal: 20),
                       decoration: BoxDecoration(
-                        color: Get.theme.primaryColorLight,
+                        color: Colors.white,
                         borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(5),
                           bottomRight: Radius.circular(5),
                         ),
                       ),
-                      child: Container(
-                        margin: EdgeInsets.symmetric(horizontal: 16),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Mulai Belajar Alfabet',
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                                color: Get.theme.primaryColorDark,
-                              ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Mulai Belajar Alfabet',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
                             ),
-                            SizedBox(height: 3),
-                            Text(
-                              'Mengenal Alfabet dalam Bahasa Isyarat',
-                              style: TextStyle(
-                                fontSize: 10,
-                                color: Get.theme.primaryColorDark,
-                              ),
+                          ),
+                          SizedBox(height: 3),
+                          Text(
+                            'Mengenal Alfabet dalam Bahasa Isyarat',
+                            style: TextStyle(
+                              fontSize: 10,
+                              color: Colors.black,
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
